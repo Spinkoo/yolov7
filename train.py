@@ -241,11 +241,12 @@ def train(hyp, opt, device, tb_writer=None):
         logger.info('Using SyncBatchNorm()')
 
     # Trainloader
-    """dataloader, dataset = create_dataloader(train_path, imgsz, batch_size, gs, opt,
+    dataloader, dataset = create_dataloader(train_path, imgsz, batch_size, gs, opt,
                                             hyp=hyp, augment=True, cache=opt.cache_images, rect=opt.rect, rank=rank,
                                             world_size=opt.world_size, workers=opt.workers,
-                                            image_weights=opt.image_weights, quad=opt.quad, prefix=colorstr('train: '))"""
-    dataloader, testloader, dataset = get_dataloader_set()
+                                            image_weights=opt.image_weights, quad=opt.quad, prefix=colorstr('train: '))
+
+    #dataloader, testloader, dataset = get_dataloader_set()
     mlc = dataset.labels[:, 0].astype('int').max()  # max label class
     nb = len(dataloader)  # number of batches
     assert mlc < nc, 'Label class %g exceeds nc=%g in %s. Possible class labels are 0-%g' % (mlc, nc, opt.data, nc - 1)
