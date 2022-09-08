@@ -53,4 +53,4 @@ def get_dataloader_set(path = "/content/drive/MyDrive/s/annotations/6_classes.js
   train_dataloader = DataLoader(train, batch_size=6, shuffle=True, collate_fn= my_collate)
 
   test_dataloader = DataLoader(test, batch_size=6, shuffle=True, collate_fn= my_collate)
-  return train_dataloader, test_dataloader, train, test
+  return train_dataloader, test_dataloader, cc1

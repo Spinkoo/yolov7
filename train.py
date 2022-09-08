@@ -246,8 +246,7 @@ def train(hyp, opt, device, tb_writer=None):
                                             world_size=opt.world_size, workers=opt.workers,
                                             image_weights=opt.image_weights, quad=opt.quad, prefix=colorstr('train: '))"""
     dataloader, testloader, dataset = get_dataloader_set()
-    dataset.labels = dataset.labels[None]
-    mlc = np.concatenate(dataset.labels, 0)[:, 0].max()  # max label class
+    mlc = dataset.labels[:, 0].astype('int').max()  # max label class
     nb = len(dataloader)  # number of batches
     assert mlc < nc, 'Label class %g exceeds nc=%g in %s. Possible class labels are 0-%g' % (mlc, nc, opt.data, nc - 1)
     
@@ -255,8 +254,8 @@ def train(hyp, opt, device, tb_writer=None):
     if rank in [-1, 0]:
 
         if not opt.resume:
-            labels = np.concatenate(dataset.labels, 0)
-            c = torch.tensor(labels[:, 0])  # classes
+            labels = dataset.labels
+            c = torch.tensor(labels[:, 0].astype('int'))  # classes
             # cf = torch.bincount(c.long(), minlength=nc) + 1.  # frequency
             # model._initialize_biases(cf.to(device))
             if plots:
@@ -265,6 +264,7 @@ def train(hyp, opt, device, tb_writer=None):
                     tb_writer.add_histogram('classes', c, 0)
 
             # Anchors
+            opt.noautoanchor = True
             if not opt.noautoanchor:
                 check_anchors(dataset, model=model, thr=hyp['anchor_t'], imgsz=imgsz)
             model.half().float()  # pre-reduce anchor precision
