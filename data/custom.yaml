@@ -6,8 +6,8 @@ val: /content/drive/MyDrive/s/val_data.txt # 5000 images
 test: /content/drive/MyDrive/s/val_data.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
 
 # number of classes
-nc: 6
+nc: 7
 
 # class names
-names: ['Big Cardboard', 'Plastic Bag', 'Recycle waste', 'Textile', 'Garbage Bag', 'Bulky']
+names: ['Background', 'Big Cardboard', 'Plastic Bag', 'Recycle waste', 'Textile', 'Garbage Bag', 'Bulky']
 
