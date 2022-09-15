@@ -2,8 +2,8 @@
 
 # train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
 train: /content/drive/MyDrive/m/train_data2.txt  # 118287 images
-val: /content/drive/MyDrive/m/tet_data.txt # 5000 images
-test: /content/drive/MyDrive/m/tet_data.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+val: /content/drive/MyDrive/m/test_data.txt # 5000 images
+test: /content/drive/MyDrive/m/test_data.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
 
 # number of classes
 nc: 2
