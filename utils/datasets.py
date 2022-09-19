@@ -1024,13 +1024,13 @@ def random_perspective(img, targets=(), segments=(), degrees=10, translate=.1, s
 
     # Center
     C = np.eye(3)
-    C[0, 2] = -img.shape[1] / 2  # x translation (pixels)
-    C[1, 2] = -img.shape[0] / 2  # y translation (pixels)
+    #C[0, 2] = -img.shape[1] / 2  # x translation (pixels)
+    #C[1, 2] = -img.shape[0] / 2  # y translation (pixels)
 
     # Perspective
     P = np.eye(3)
-    P[2, 0] = random.uniform(-perspective, perspective)  # x perspective (about y)
-    P[2, 1] = random.uniform(-perspective, perspective)  # y perspective (about x)
+    #P[2, 0] = random.uniform(-perspective, perspective)  # x perspective (about y)
+    #P[2, 1] = random.uniform(-perspective, perspective)  # y perspective (about x)
 
     # Rotation and Scale
     R = np.eye(3)
@@ -1047,8 +1047,8 @@ def random_perspective(img, targets=(), segments=(), degrees=10, translate=.1, s
 
     # Translation
     T = np.eye(3)
-    T[0, 2] = random.uniform(0.5 - translate, 0.5 + translate) * width  # x translation (pixels)
-    T[1, 2] = random.uniform(0.5 - translate, 0.5 + translate) * height  # y translation (pixels)
+    #T[0, 2] = random.uniform(0.5 - translate, 0.5 + translate) * width  # x translation (pixels)
+    #T[1, 2] = random.uniform(0.5 - translate, 0.5 + translate) * height  # y translation (pixels)
 
     # Combined rotation matrix
     M = T @ S @ R @ P @ C  # order of operations (right to left) is IMPORTANT
