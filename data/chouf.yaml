@@ -9,5 +9,5 @@ test: /home/wharrouz/data/test_data.txt  # 20288 of 40670 images, submit to http
 nc: 2
 
 # class names
-names: ['Background', 'Big Cardboard']
+names: ['Background', 'P']
 
