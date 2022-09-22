@@ -360,6 +360,7 @@ def wasserstein_loss(pred, target, eps=1e-7, x1y1x2y2=True, mode='exp', gamma=1,
         b2_x1, b2_y1, b2_x2, b2_y2 = target[0], target[1], target[2], target[3]
 
     else:  # transform from xywh to xyxy
+        print(target)
         b1_x1, b1_x2 = pred[0] - pred[2] / 2, pred[0] + pred[2] / 2
         b1_y1, b1_y2 = pred[1] - pred[3] / 2, pred[1] + pred[3] / 2
         b2_x1, b2_x2 = target[0] - target[2] / 2, target[0] + target[2] / 2
