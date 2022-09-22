@@ -353,22 +353,19 @@ def wasserstein_loss(pred, target, eps=1e-7, x1y1x2y2=True, mode='exp', gamma=1,
     Return:
         Tensor: Loss tensor.
     """
-    print(pred.shape, target.shape)
+    target = target.T
     # Get the coordinates of bounding boxes
     if x1y1x2y2:  # x1, y1, x2, y2 = box1
         b1_x1, b1_y1, b1_x2, b1_y2 = pred[0], pred[1], pred[2], pred[3]
         b2_x1, b2_y1, b2_x2, b2_y2 = target[0], target[1], target[2], target[3]
+
     else:  # transform from xywh to xyxy
         b1_x1, b1_x2 = pred[0] - pred[2] / 2, pred[0] + pred[2] / 2
         b1_y1, b1_y2 = pred[1] - pred[3] / 2, pred[1] + pred[3] / 2
         b2_x1, b2_x2 = target[0] - target[2] / 2, target[0] + target[2] / 2
         b2_y1, b2_y2 = target[1] - target[3] / 2, target[1] + target[3] / 2
 
-    center1 = (b1_x1 + b1_x2) / 2, (b1_y1 + b1_y2) / 2
-    center2 = (b2_x1 + b2_x2) / 2, (b2_y1 + b2_y2) / 2
-
-    whs = center1[:2] - center2[:2]
-
+    whs = (b1_x1 + b1_x2) / 2 - (b2_x1 + b2_x2) / 2, (b1_y1 + b1_y2) / 2 - (b2_y1 + b2_y2) / 2
     center_distance = whs[0] ** 2 + whs[1] ** 2 + eps 
 
     w1 = b1_x2 - b1_x1 + eps
