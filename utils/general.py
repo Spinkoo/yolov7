@@ -340,7 +340,7 @@ def clip_coords(boxes, img_shape):
     boxes[:, 3].clamp_(0, img_shape[0])  # y2
 
 
-def wasserstein_loss(pred, target, eps=1e-7, x1y1x2y2=True, mode='w2', gamma=1, constant=12.8):
+def wasserstein_loss(pred, target, eps=1e-7, x1y1x2y2=True, mode='exp', gamma=1, constant=1):
     r"""`Implementation of paper `Enhancing Geometric Factors into
     Model Learning and Inference for Object Detection and Instance
     Segmentation <https://arxiv.org/abs/2005.03572>`_.
