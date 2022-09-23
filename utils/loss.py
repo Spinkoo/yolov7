@@ -603,8 +603,10 @@ class ComputeLossOTA:
                 pbox = torch.cat((pxy, pwh), 1)  # predicted box
                 selected_tbox = targets[i][:, 2:6] * pre_gen_gains[i]
                 selected_tbox[:, :2] -= grid
-                #iou = bbox_iou(pbox.T, selected_tbox, x1y1x2y2=False, CIoU=True)  # iou(prediction, target)
-                iou = wasserstein_loss(pbox.T, selected_tbox, x1y1x2y2=False)
+                iou = bbox_iou(pbox.T, selected_tbox, x1y1x2y2=False, CIoU=True)  # iou(prediction, target)
+                print('iou', iou)
+                iou = wasserstein_loss(pbox.T, selected_tbox, x1y1x2y2=False, mode='w2')
+                print('wsloss', iou)
                 lbox += (1.0 - iou).mean()  # iou loss
 
                 # Objectness
