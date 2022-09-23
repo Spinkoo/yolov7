@@ -380,7 +380,7 @@ def wasserstein_loss(pred, target, eps=1e-7, x1y1x2y2=True, mode='exp', gamma=1,
 
     if mode == 'exp':
         normalized_wasserstein = torch.exp(-torch.sqrt(wasserstein_2)/constant)
-        wloss = 1 - normalized_wasserstein
+        wloss = normalized_wasserstein
     
     if mode == 'sqrt':
         wloss = torch.sqrt(wasserstein_2)

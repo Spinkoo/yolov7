@@ -605,7 +605,7 @@ class ComputeLossOTA:
                 selected_tbox[:, :2] -= grid
                 iou = bbox_iou(pbox.T, selected_tbox, x1y1x2y2=False, CIoU=True)  # iou(prediction, target)
                 print('iou', (1.0 - iou).mean())
-                iou = wasserstein_loss(pbox.T, selected_tbox, x1y1x2y2=False, mode='w2')
+                iou = wasserstein_loss(pbox.T, selected_tbox, x1y1x2y2=False, mode='exp')
                 print('wsloss', (1.0 - iou).mean())
                 lbox += (1.0 - iou).mean()  # iou loss
 
